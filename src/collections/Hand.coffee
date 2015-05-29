@@ -5,6 +5,7 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
+    @isBust()
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -20,4 +21,8 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
-
+  isBust: ->
+    if @minScore() > 21
+      @trigger 'busted', this
+    # this will check minScore and see if it is over 21
+    # if it is, then tringger busted (app.coffee will listen for the busted event)
