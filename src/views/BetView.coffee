@@ -6,7 +6,8 @@ class window.BetView extends Backbone.View
                           <button type="button" id="betButton">Place Bet</button> \
                           <button type="button" id="plusBet">+ $10</button> \
                           <button type="button" id="minusBet">- $10</button> \
-                          <div class="playerMoney"> $<%- pmoney %> </div>
+                          <div class="playerMoney"> Bet: $<%- pbet %> </div> \
+                          <div class="playerMoney"> Cash: $<%- pmoney %> </div> \
                         </div>'
 
   events: {
@@ -25,7 +26,7 @@ class window.BetView extends Backbone.View
     console.log("handleBet: pmoney: #{@collection.money}")
     @collection.money -= bet
     #update hand current bet
-    @collection.currentBet = bet
+    @collection.currentBet += bet
     #re-render so money after bet displays
     @$('input').val('')
     @render()
@@ -47,5 +48,5 @@ class window.BetView extends Backbone.View
   initialize: -> @render()
 
   render: ->
-    @$el.html @template {pmoney : @collection.money}
+    @$el.html @template {pbet : @collection.currentBet , pmoney : @collection.money}
 

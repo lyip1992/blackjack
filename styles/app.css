@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("../img/bgpattern.jpg");
+  background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85) ), url("../img/bgpattern.jpg");
   background-repeat: repeat;
 
 }
@@ -14,22 +14,43 @@ body {
   color: yellow;
   padding: 5px;
   background-color: #008600;
-  border: 3px solid #005500;
+  border: 3px solid #00aa00;
+  border-radius: 3px;
   width: 1024px;
   width: 768px;
 }
 
 .bet {
-  background-color: red;
+  border: 2px solid yellow;
+  border-radius: 2px;
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("../img/betpattern.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100px;
-  height: 100px;
+  height: 120px;
 }
 
 .bet-container {
   float: right;
   width: 100px;
   height: 100px;
-  padding: 5px;
+  padding: 3px;
+  text-align: center;
+}
+
+.bet-container input {
+  padding: 3px;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.bet-container button {
+  width: 48%;
+  margin-bottom: 2px;
+}
+
+.bet-container #betButton {
+  width: 100%;
 }
 
 h2 {
@@ -54,6 +75,7 @@ h2 {
 
 .hand {
   overflow: auto;
+  /*border: 1px dotted yellow;*/
 }
 
 .cardImg {
