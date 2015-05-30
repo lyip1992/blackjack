@@ -1,7 +1,12 @@
 class window.Hand extends Backbone.Collection
-  model: Card
+  model: Card,
 
-  initialize: (array, @deck, @isDealer) ->
+  bustStatus: false,
+
+  playerName: "player",
+
+  initialize: (array, @deck, @isDealer, name) ->
+    @playerName = name
 
   hit: ->
     @add(@deck.pop())
@@ -23,6 +28,33 @@ class window.Hand extends Backbone.Collection
 
   isBust: ->
     if @minScore() > 21
-      @trigger 'busted', this
+      @bustStatus = true
+      console.log "busted!"
+      @trigger 'busted', "#{@playerName} busted!"
+
+
     # this will check minScore and see if it is over 21
     # if it is, then tringger busted (app.coffee will listen for the busted event)
+
+  bestScore: ->
+    #TODO: this is not complete
+    console.log 'best score output'
+    console.log @scores()[0]
+    @scores()[0]
+
+
+  stand: ->
+    # capture the current score
+    console.log "stand triggered"
+    @trigger 'stand', this
+
+  hitUntil: (score) ->
+    @first().flip()
+    console.log "delaer is playing"
+    while @bestScore() < score
+      @hit()
+    @stand() unless @bustStatus
+    return
+
+
+    # transfer control to the dealer and have him start playing

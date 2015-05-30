@@ -7,12 +7,35 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
-    @listenTo @model.get('playerHand'), 'busted', @startNewGame
+    @listenTo @model.get('playerHand'), 'busted', @gameOver
+    @listenTo @model.get('playerHand'), 'stand', @dealerTurn
+
+  dealerTurn: ->
+    @listenTo @model.get('dealerHand'), 'busted', @gameOver
+    @listenTo @model.get('dealerHand'), 'stand', @checkWinner
+    @model.get('dealerHand').hitUntil(17)
+
+  checkWinner: ->
+    pScore = @model.get('playerHand').bestScore()
+    dScore = @model.get('dealerHand').bestScore()
+
+    if pScore > dScore then alert "Player wins!"
+    else if pScore < dScore then alert "Dealer wins!"
+    else alert "Draw!"
+
+    @startNewGame()
+
+  gameOver: (winnerHand) ->
+    alert "Busted!"
+
+    @startNewGame()
 
   startNewGame: ->
-    @model.playerLost()
     @model.initialize()
-    @listenTo @model.get('playerHand'), 'busted', @startNewGame
+
+    # re-attach event listeners
+    @listenTo @model.get('playerHand'), 'busted', @gameOver
+    @listenTo @model.get('playerHand'), 'stand', @dealerTurn
     @render()
 
   # View code ###
