@@ -30,14 +30,15 @@ body {
   border-radius: 3px;
   padding: 5px;
   color: #0c0;
+  overflow: hidden;
 }
 
 .fader {
   background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9) ), rgba(0,0,0,0);
   position: absolute;
-  height: 126px;
+  height: 131px;
   width: 768px;
-  top: 512px;
+  top: 510px;
   /*border: 1px dotted yellow;*/
 }
 
