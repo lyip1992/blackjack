@@ -17,28 +17,32 @@ class window.BetView extends Backbone.View
 
   handleBet: ->
     #parse the bet value from textbox
-    bet = parseInt(@$('input').val())
+    bet = ( if @$('input').val() == "" then 0 else parseInt(@$('input').val()) )
+    console.log("handleBet: bet: #{bet}")
     #reset the bet textbox
     @$('input').val('')
     #remove bet amount from player (hand)
+    console.log("handleBet: pmoney: #{@collection.money}")
     @collection.money -= bet
     #update hand current bet
     @collection.currentBet = bet
     #re-render so money after bet displays
+    @$('input').val('')
     @render()
 
   increaseBet: ->
-    @collection.currentBet += 10
-    @$('input').val(@collection.currentBet)
+    currentInput = ( if @$('input').val() == "" then 0 else parseInt(@$('input').val()) )
+    currentInput = parseInt(currentInput)
+    currentInput += 10
+    currentInput = Math.min(currentInput, @collection.money)
+    @$('input').val(currentInput)
 
   decreaseBet: ->
-    cbet = parseInt(@$('input').val())
-    if cbet <= 10
-      cbet = 0
-    else
-      cbet -= 10
-    @collection.currentBet = cbet
-    @$('input').val(cbet)
+    currentInput = ( if @$('input').val() == "" then 0 else parseInt(@$('input').val()) )
+    currentInput = parseInt(currentInput)
+    currentInput -= 10
+    currentInput = Math.max(currentInput, 0)
+    @$('input').val(currentInput)
 
   initialize: -> @render()
 

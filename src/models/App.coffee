@@ -5,3 +5,10 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+
+  nextRound: ->
+    pmoney = @get('playerHand').money
+    console.log("app: nextRond: pmoney: #{pmoney}")
+    @set 'deck', deck = new Deck()
+    @set 'playerHand', deck.dealPlayer(pmoney)
+    @set 'dealerHand', deck.dealDealer()

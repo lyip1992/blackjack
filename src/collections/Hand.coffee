@@ -9,8 +9,9 @@ class window.Hand extends Backbone.Collection
 
   currentBet: 0,
 
-  initialize: (array, @deck, @isDealer, name) ->
+  initialize: (array, @deck, @isDealer, name, money) ->
     @playerName = name
+    @money = money
 
   hit: ->
     @add(@deck.pop())
@@ -34,7 +35,7 @@ class window.Hand extends Backbone.Collection
     if @minScore() > 21
       @bustStatus = true
       console.log "busted!"
-      @trigger 'busted', "#{@playerName} busted!"
+      @trigger 'busted', this
 
 
     # this will check minScore and see if it is over 21
