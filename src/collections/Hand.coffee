@@ -5,6 +5,10 @@ class window.Hand extends Backbone.Collection
 
   playerName: "player",
 
+  money: 100,
+
+  currentBet: 0,
+
   initialize: (array, @deck, @isDealer, name) ->
     @playerName = name
 

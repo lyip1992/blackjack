@@ -26,6 +26,9 @@ class window.AppView extends Backbone.View
 
     @startNewGame()
 
+  referee: ->
+    console.log "referee is on it!"
+
   gameOver: (winnerHand) ->
     alert "Busted!"
     @startNewGame()
@@ -43,7 +46,6 @@ class window.AppView extends Backbone.View
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
-    <div class="bet-container"></div>
   '
 
 
@@ -53,5 +55,5 @@ class window.AppView extends Backbone.View
     @$el.html @template()
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
-    @$('.bet-container').html new BetView().el
+    #@$('.bet-container').html new BetView().el
 

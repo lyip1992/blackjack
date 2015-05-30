@@ -16,8 +16,7 @@
 }
 
 .bet-container {
-  padding-left: 85%;
-  margin-bottom: 5%;
+  float: right;
   width: 100px;
   height: 100px;
 }
@@ -35,6 +34,7 @@ h2 {
   border-radius: 5px;
   height: 140px;
   margin-right: 20px;
+  background-color: white;
 }
 
 .covered {
