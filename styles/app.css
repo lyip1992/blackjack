@@ -1,3 +1,18 @@
+.main {
+  background-image: url("../img/table-background.png");
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: yellow;
+  padding: 5px;
+}
+
+h2 {
+  background-color: rgba(0,0,0,0.5);
+  width: 150px;
+  text-align: center;
+}
+
 .card {
   float: left;
   border: solid 1px black;
@@ -13,4 +28,13 @@
 
 .hand {
   overflow: auto;
+}
+
+.cardImg {
+  height: 100%;
+  width: 100%;
+}
+
+.covered {
+  content:url("../img/card-back.png");
 }

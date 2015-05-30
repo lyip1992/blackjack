@@ -1,5 +1,6 @@
 class window.AppView extends Backbone.View
   # Controller code ###
+  el: '<div class="main"></div>'
 
   events:
     'click .hit-button': -> @model.get('playerHand').hit()
@@ -27,7 +28,6 @@ class window.AppView extends Backbone.View
 
   gameOver: (winnerHand) ->
     alert "Busted!"
-
     @startNewGame()
 
   startNewGame: ->
